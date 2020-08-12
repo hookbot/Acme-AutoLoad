@@ -9,6 +9,7 @@ our $VERSION = '0.07';
 our $last_fetched = "";
 our $lib = "lib";
 
+sub ignore {}
 sub import {
   warn "DEBUG: Congratulations! Acme::AutoLoad has been loaded.\n" if $ENV{AUTOLOAD_DEBUG};
   $lib = $ENV{AUTOLOAD_LIB} if $ENV{AUTOLOAD_LIB};
@@ -19,6 +20,7 @@ sub import {
     };
   }
   push @INC, $lib, \&inc;
+  return \&ignore;
 }
 
 sub mkbase {
@@ -128,7 +130,7 @@ sub inc {
     return ();
   }
   mkbase($cache_file) or die "$cache_file: Unable to create! $!\n";
-  pop @INC if $INC[-1] eq \&botstrap::inc;
+  unshift @INC if $INC[0] eq \&ignore;
 
   if ($f =~ m{^([\w/]+)\.pm}) {
     my $dist = $1;
