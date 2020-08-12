@@ -196,7 +196,6 @@ sub inc {
 
 sub get {
   local $_ = shift;
-  $_ = shift;
   s{^http(s|)://}{}i;
   s{^([\w\-\.\:]+)$}{$1/};
   s{^([\w\-\.]+)/}{$1:80/};
