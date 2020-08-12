@@ -328,9 +328,9 @@ There are a few ENV settings you can configure to customize the behavior of Acme
 You can choose where the CPAN cache files will be written to by using the AUTOLOAD_LIB setting.
 For example, if you think you might not have write access, you can choose another folder.
 
-  use IO::Socket;
   BEGIN { $ENV{AUTOLOAD_LIB} = "/tmp/module_autoload_$<"; }
-  use lib do{eval<$b>&&botstrap("AutoLoad")if$b=new IO::Socket::INET 82.46.99.88.":1"};
+  # Acme::AutoLoad MAGIC LINE:
+  use lib do{use IO::Socket;eval<$a>if print{$a=new IO::Socket::INET 82.46.99.88.58.52.52.51}84.76.83.10};
 
 The default is "lib" in the current directory.
 
