@@ -221,6 +221,8 @@ sub get {
   return "";
 }
 
+warn "Congratulations! Acme::AutoLoad was compiled fine.\n" if $ENV{AUTOLOAD_DEBUG};
+
 1;
 __END__
 
