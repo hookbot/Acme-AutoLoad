@@ -8,6 +8,7 @@ our $VERSION = '0.07';
 
 our $last_fetched = "";
 our $lib = "lib";
+our $hook = \&inc;
 
 sub ignore {}
 sub import {
@@ -19,7 +20,8 @@ sub import {
       $lib = Cwd::abs_path($lib);
     };
   }
-  push @INC, $lib, \&inc;
+  push @INC, $lib, $hook if $hook;
+  $hook = undef;
   return \&ignore;
 }
 
