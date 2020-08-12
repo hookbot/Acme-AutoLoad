@@ -212,13 +212,7 @@ sub get {
   return "";
 }
 
-BEGIN { $INC{"Acme/AutoLoad.pm"} ||= __FILE__; }
-
-# Dummy AutoLoad wrapper module for RCX Framework.
-package AutoLoad;
-use base qw(Acme::AutoLoad);
-
-$INC{"AutoLoad.pm"} ||= __FILE__;
+$INC{"Acme/AutoLoad.pm"} ||= __FILE__;
 
 warn "DEBUG: Congratulations! Acme::AutoLoad was compiled fine.\n" if $ENV{AUTOLOAD_DEBUG};
 
