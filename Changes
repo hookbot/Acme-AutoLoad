@@ -1,5 +1,10 @@
 Revision history for Perl extension Acme::AutoLoad.
 
+0.08  Tue Aug 12 14:00 2020
+ - Require special ENV for network tests.
+ - Include self bootstrap loading test.
+ - Documental changes.
+
 0.07  Tue Aug 11 20:00 2020
  - Renamed Module::AutoLoad to Acme::AutoLoad namespace
  - Removed all single and double quotes from MAGIC LINE
