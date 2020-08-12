@@ -362,7 +362,7 @@ lib::xi - Similar on-demand functionality except nothing required to install.
 
 local::lib - Similar local folder installation functionality except nothing to install.
 
-App::cpanminus - Similar remote network install functionality except nothing required to install.
+App::cpanminus - Similar remote network "cpanmin.us" execution functionality except smaller.
 
 CPAN - Actually installs CPAN modules instead of using a local cache.
 
