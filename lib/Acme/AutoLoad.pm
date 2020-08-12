@@ -130,7 +130,7 @@ sub inc {
     return ();
   }
   mkbase($cache_file) or die "$cache_file: Unable to create! $!\n";
-  unshift @INC if $INC[0] eq \&ignore;
+  shift @INC if $INC[0] eq \&ignore;
 
   if ($f =~ m{^([\w/]+)\.pm}) {
     my $dist = $1;
