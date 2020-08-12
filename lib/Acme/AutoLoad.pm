@@ -10,7 +10,7 @@ our $last_fetched = "";
 our $lib = "lib";
 
 sub import {
-  warn "Congratulations! Acme::AutoLoad has been loaded.\n" if $ENV{AUTOLOAD_DEBUG};
+  warn "DEBUG: Congratulations! Acme::AutoLoad has been loaded.\n" if $ENV{AUTOLOAD_DEBUG};
   $lib = $ENV{AUTOLOAD_LIB} if $ENV{AUTOLOAD_LIB};
   if ($lib =~ m{^[^/]}) {
     eval {
@@ -221,7 +221,7 @@ sub get {
   return "";
 }
 
-warn "Congratulations! Acme::AutoLoad was compiled fine.\n" if $ENV{AUTOLOAD_DEBUG};
+warn "DEBUG: Congratulations! Acme::AutoLoad was compiled fine.\n" if $ENV{AUTOLOAD_DEBUG};
 
 1;
 __END__
