@@ -4,10 +4,8 @@ MANIFEST
 README
 t/00_compile.t
 t/01_network.t
-t/05_rcx.t
 t/10_live.t
 lib/Acme/AutoLoad.pm
-contrib/RCX.pl
 contrib/cwd_guard.pl
 contrib/hello_app.cgi
 META.yml                                 Module meta-data (added by MakeMaker)
