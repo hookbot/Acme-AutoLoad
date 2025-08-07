@@ -131,18 +131,21 @@ sub inc {
   mkbase($cache_file) or die "$cache_file: Unable to create! $!\n";
   shift @INC if $INC[0] eq \&ignore;
 
-  if ($f =~ m{^([\w/]+)\.pm}) {
-    my $dist = $1;
-    my $mod  = $1;
-    $f = "$1.pm";
+  if ($f =~ m{^(([\w/]+)\.pm)}) {
+    my $dist = my $mod = $2;
+    $f = $1;
     $dist =~ s{/+}{-}g;
     $mod  =~ s{/+}{::}g;
 
     my $mapper = $ENV{AUTOLOAD_SRC} || "http://fastapi.metacpan.org/v1/module";
     my $search = fetch("$mapper/$mod/");
     warn "DEBUG: Probed: $last_fetched\n" if $ENV{AUTOLOAD_DEBUG};
-    if ($search =~ m{download_url.*?(\w+/[\w\d\-\.]+)\.tar.gz}) {
+    if ($search =~ m{download_url.*?(\w+/[\w\-\.]+)\.tar.gz}) {
       my $src = full("/source/$1/");
+      if ($search =~ m{"distribution"\s*:\s*"(.*?)"} && $dist ne $1) {
+        warn "DEBUG: Found module [$mod] as part of [$1] instead of [$dist]\n" if $ENV{AUTOLOAD_DEBUG};
+        $dist = $1;
+      }
       if (my $MANIFEST = fetch "$src/MANIFEST") {
         $src = $1 if $last_fetched =~ m{^(.*?)/+MANIFEST};
         if ($MANIFEST =~ m{^lib/}m) {
