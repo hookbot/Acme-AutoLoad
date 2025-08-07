@@ -297,26 +297,6 @@ to save time for future invocations.
 This only works for Pure Perl CPAN modules at this time.
 If you use modules with XS or bytecode, you will probably have to truly install it first.
 
-=head2 5. Load Precedence
-
-You must always load the main distribution module first,
-even if you don't actually need to use that module anywhere.
-
-  # For example, if all you need is Net::DNS::Resolver
-  # You still have to load Net::DNS first.
-  use Net::DNS;
-  use Net::DNS::Resolver;
-
-=head2 6. Irregular Distros
-
-And for the same reason, those crazy distribution names that aren't really a module
-are more difficult to load on the fly. One workaround is with eval.
-
-  # For example, Mail::Cap is part of the MailTools distribution.
-  # But MailTools.pm doesn't exist, so you have to eval it.
-  BEGIN { eval { require MailTools; } }
-  use Mail::Cap;
-
 =head1 ENVIRONMENT VARIABLES
 
 There are a few ENV settings you can configure to customize the behavior of Acme::AutoLoad.
