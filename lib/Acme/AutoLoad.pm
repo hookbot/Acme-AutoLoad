@@ -141,8 +141,8 @@ sub inc {
     $dist =~ s{/+}{-}g;
     $mod  =~ s{/+}{::}g;
 
-    my $mapper = $ENV{AUTOLOAD_SRC} || "http://fastapi.metacpan.org/v1/release";
-    my $search = fetch("$mapper/$dist/");
+    my $mapper = $ENV{AUTOLOAD_SRC} || "http://fastapi.metacpan.org/v1/module";
+    my $search = fetch("$mapper/$mod/");
     warn "DEBUG: Probed: $last_fetched\n" if $ENV{AUTOLOAD_DEBUG};
     if ($search =~ m{download_url.*?(\w+/[\w\d\-\.]+)\.tar.gz}) {
       my $src = full("/source/$1/");
@@ -346,7 +346,7 @@ You can use AUTOLOAD_SRC to specify the mapper engine to ask where the latest lo
   # For example
   BEGIN { $ENV{AUTOLOAD_SRC} = "http://metacpan.org/release"; }
 
-The default is "http://fastapi.metacpan.org/v1/release" .
+The default is "http://fastapi.metacpan.org/v1/module"
 
 =head2 NETWORK_TEST_ACME_AUTOLOAD
 
