@@ -46,11 +46,8 @@ sub fetch {
   $last_fetched = $url;
   if ($contents =~ m{The document has moved <a href="([^<>]+)">}) {
     my $bounce = $1;
-    if ($recurse->{$bounce} && $recurse->{$bounce} > 2) {
-      return $contents;
-    }
-    $recurse->{$bounce}++;
-    return fetch($bounce, $recurse) if $recurse->{total}++<20;
+    return $contents if ++$recurse->{$bounce} > 3;
+    return fetch($bounce, $recurse) if ++$recurse->{total} < 21;
   }
   return $contents;
 }
